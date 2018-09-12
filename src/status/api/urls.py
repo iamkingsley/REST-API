@@ -4,6 +4,8 @@ from .views import (
     StatusAPIView, 
     StatusCreateAPIView,
     StatusDetailAPIView,
+    # StatusUpdateAPIView,
+    # StatusDeleteAPIView
     )
 
 urlpatterns = [
