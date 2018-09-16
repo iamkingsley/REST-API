@@ -9,7 +9,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'api.restconf.pagination.APIPagination'
+    'DEFAULT_PAGINATION_CLASS': 'api.restconf.pagination.APIPagination',
+    'DEFAULT_FILTER_BACKENDS': (
+            'rest_framework.filters.SearchFilter',
+            'rest_framework.filters.OrderingFilter',
+    ),
+    'SEARCH_PARAM': 'q',
+    'ORDERING_PARAM': 'ordering',
 }
 
 JWT_AUTH = {
