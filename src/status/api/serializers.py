@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from accounts.api.serializers import UserPublicSerializer
 from status.models import Status
 
 '''
@@ -13,15 +14,21 @@ Serializers -> validate data
 
 
 class StatusSerializer(serializers.ModelSerializer):
+    uri             = serializers.SerializerMethodField(read_only=True)
+    user            = UserPublicSerializer(read_only=True)
     class Meta:
         model = Status 
         fields =[
+            'uri',
             'id',
             'user',
             'content',
             'image'
         ]
         read_only_fields = ['user'] # GET  #readonly_fields
+    
+    def get_uri(self, obj):
+        return "/api/status/{id}/".format(id=obj.id)
 
     # def validate_content(self, value):
     #     if len(value) > 10000:
