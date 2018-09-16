@@ -43,6 +43,10 @@ class RegisterAPIView(generics.CreateAPIView):
     queryset                = User.objects.all()
     serializer_class        = UserRegisterSerializer
     permission_classes      = [permissions.AllowAny]
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request": self.request}
+        
     # def post(self, request, *args, **kwargs):
     #     #print(request.user)
     #     if request.user.is_authenticated:
